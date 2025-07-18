@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../material/material.css">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <h1 style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+            TabTock
+            <img src="../../icon48.png" alt="TabTock Icon" style="width: 48px; height: 48px;">
+        </h1>
+        
+        <!-- Timer Setup Section -->
+        <div class="timer-setup">
+            <div class="timer-inputs">
+                <input type="number" id="days" placeholder="Days" min="0" max="365">
+                <input type="number" id="hours" placeholder="Hours" min="0" max="23">
+                <input type="number" id="minutes" placeholder="Minutes" min="0" max="59">
+                <input type="number" id="seconds" placeholder="Seconds" min="0" max="59">
+            </div>
+            <div class="buttons">
+                <button id="startButton">Start Timer</button>
+                <button id="closeButton">Close Tab Now</button>
+            </div>
+        </div>
+
+        <!-- Active Timers Table -->
+        <div class="active-timers">
+            <h2>Active Timers</h2>
+            <div id="timersContainer">
+                <table id="timersTable">
+                    <thead>
+                        <tr>
+                            <th>Tab</th>
+                            <th>Time Left</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timersTableBody">
+                        <!-- Dynamic content will be inserted here -->
+                    </tbody>
+                </table>
+                <div id="noTimersMessage" class="no-timers">No active timers</div>
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>

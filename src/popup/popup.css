@@ -1,0 +1,195 @@
+body {
+    width: 450px;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.timer-setup {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.timer-inputs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.timer-inputs input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#timerDisplay {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#startButton {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#closeButton {
+    background-color: #f44336;
+    color: white;
+}
+
+.active-timers {
+    margin-top: 20px;
+}
+
+.active-timers h2 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Add scrollable container for the table */
+#timersContainer {
+    max-height: 300px; /* Limit height for ~6 rows */
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#timersTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+#timersTable th,
+#timersTable td {
+    padding: 10px 8px; /* Increased padding for better spacing */
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+#timersTable th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    font-size: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#timersTable td {
+    font-size: 11px;
+}
+
+/* Remove border from last row */
+#timersTable tr:last-child td {
+    border-bottom: none;
+}
+
+.tab-title {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.timer-display {
+    font-family: monospace;
+    font-weight: bold;
+    color: #2196F3;
+    min-width: 80px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 6px;
+    min-width: 100px;
+}
+
+.action-buttons button {
+    padding: 6px 12px; /* Increased padding for bigger buttons */
+    font-size: 11px; /* Slightly larger font */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    min-width: 45px; /* Minimum width for easier clicking */
+    transition: all 0.2s ease;
+}
+
+.action-buttons button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.switch-btn {
+    background-color: #2196F3;
+    color: white;
+}
+
+.switch-btn:hover {
+    background-color: #1976D2;
+}
+
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #d32f2f;
+}
+
+.no-timers {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Custom scrollbar styling */
+#timersContainer::-webkit-scrollbar {
+    width: 8px;
+}
+
+#timersContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#timersContainer::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+#timersContainer::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

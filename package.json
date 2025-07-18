@@ -1,0 +1,25 @@
+{
+  "name": "tab-tock",
+  "version": "1.0.0",
+  "description": "A Chrome extension that allows users to set a timer to close the current tab.",
+  "main": "src/popup/popup.ts",
+  "scripts": {
+    "build": "tsc && npm run copy-files",
+    "copy-files": "mkdir -p dist/src/popup && mkdir -p dist/src/material && mkdir -p dist/src && cp manifest.json dist/ && cp *.png dist/ 2>/dev/null || true && cp src/background.js dist/src/ 2>/dev/null || true && cp src/popup/popup.html dist/src/popup/ 2>/dev/null || true && cp src/popup/popup.css dist/src/popup/ 2>/dev/null || true && cp -r src/material/* dist/src/material/ 2>/dev/null || true && cp dist/popup/popup.js dist/src/popup/ 2>/dev/null || true && rm -rf dist/popup || true",
+    "watch": "tsc --watch",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "timer",
+    "tabs"
+  ],
+  "author": "ExiaHan",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@types/chrome": "^0.1.1",
+    "eslint": "^7.0.0",
+    "typescript": "^4.0.0"
+  }
+}
