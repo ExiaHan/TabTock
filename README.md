@@ -7,7 +7,7 @@ TabTock is a Chrome extension that allows users to set a timer for their current
 - Set a timer using four input fields: days, hours, minutes, and seconds.
 - Material design styled popup for a modern look and feel.
 - Automatically closes the current tab when the timer expires.
-- View each timer 
+- Easily control, view the set timers directly from the popup. Go to each page via the switch, and cancel the timer via cancel.
 
 ## Installation
 
