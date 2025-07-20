@@ -1,11 +1,17 @@
 // TabTock background script for manifest V3
-console.log('TabTock background script loaded');
+const DEBUG = false // Set to false in production
+
+if (DEBUG) {
+    console.log('TabTock background script loaded');
+}
 
 let activeTimers = new Map(); // tabId -> { timer, totalTime, originalTime, title, url }
 
 // Listen for extension installation
 chrome.runtime.onInstalled.addListener(() => {
-    console.log('TabTock extension installed');
+    if (DEBUG) {
+        console.log('TabTock extension installed');
+    }
 });
 
 // Handle messages from popup
@@ -54,9 +60,11 @@ function startTimer(duration, tabId) {
             console.error('Error getting tab info:', chrome.runtime.lastError);
             return;
         }
-        
-        console.log(`Starting timer for tab ${tabId}: ${tab.title}`);
-        
+
+        if (DEBUG) {
+            console.log(`Starting timer for tab ${tabId}: ${tab.title}`);
+        }
+
         const timerData = {
             totalTime: duration,
             originalTime: duration,
@@ -82,7 +90,9 @@ function stopTimer(tabId) {
     if (activeTimers.has(tabId)) {
         clearInterval(activeTimers.get(tabId).timer);
         activeTimers.delete(tabId);
-        console.log(`Stopped timer for tab ${tabId}`);
+        if (DEBUG) {
+            console.log(`Stopped timer for tab ${tabId}`);
+        }
     }
 }
 
@@ -116,7 +126,9 @@ function updateTabInfo(tabId, newTitle, newUrl) {
         timerData.title = newTitle || timerData.title;
         timerData.url = newUrl || timerData.url;
         activeTimers.set(tabId, timerData);
-        console.log(`Updated tab ${tabId} info: "${oldTitle}" -> "${timerData.title}"`);
+        if (DEBUG) {
+            console.log(`Updated tab ${tabId} info: "${oldTitle}" -> "${timerData.title}"`);
+        }
     }
 }
 
@@ -136,19 +148,25 @@ function getTimersList() {
 
 // Listen for tab updates (title changes, URL changes, etc.)
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    console.log(`Tab ${tabId} updated:`, changeInfo);
-    console.log(`Active timers:`, Array.from(activeTimers.keys()));
-    
+    if (DEBUG) {
+        console.log(`Tab ${tabId} updated:`, changeInfo);
+        console.log(`Active timers:`, Array.from(activeTimers.keys()));
+    }
+
     // Only update if we have an active timer for this tab
     if (activeTimers.has(tabId)) {
-        console.log(`Tab ${tabId} has active timer, checking for updates...`);
+        if (DEBUG) {
+            console.log(`Tab ${tabId} has active timer, checking for updates...`);
+        }
         
         const currentData = activeTimers.get(tabId);
         let shouldUpdate = false;
         
         // Always update when we have a title or URL change
         if (changeInfo.title || changeInfo.url || changeInfo.status === 'complete') {
-            console.log(`Tab ${tabId} - Title: ${tab.title}, URL: ${tab.url}`);
+            if (DEBUG) {
+                console.log(`Tab ${tabId} - Title: ${tab.title}, URL: ${tab.url}`);
+            }
             shouldUpdate = true;
         }
         
@@ -160,6 +178,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 
 // Clean up when tab is closed
 chrome.tabs.onRemoved.addListener((tabId) => {
-    console.log(`Tab ${tabId} removed`);
+    if (DEBUG) {
+        console.log(`Tab ${tabId} removed`);
+    }
     stopTimer(tabId);
 });
